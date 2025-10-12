@@ -44,7 +44,7 @@
   
     
 <div id="banner" class=" is_home ">
-  <img src="/images/04.webp" itemprop="image">
+  <img src="/images/05.webp" itemprop="image">
   <div id="banner-dim"></div>
 </div>
  
@@ -239,7 +239,12 @@
       </header>
       <div class="e-content article-entry" itemprop="articleBody">
         
-          <p><strong>题目描述</strong><br>给定一个具有N个顶点的凸多边形，将顶点从1至N标号，每个顶点的权值都是一个正整数。将这个凸多边形划分成N−2个互不相交的三角形，试求这些三角形顶点的权值乘积和至少为多少。<br><strong>输入</strong><br>输入第一行为顶点数N（N≤50）<br>第二行依次为顶点1至顶点N的权值。<br><strong>输出</strong><br>输出仅一行，为这些三角形顶点的权值乘积和的最小值。<br><strong>样例输入</strong><br>5<br>121 122 123 245 231<br><strong>样例输出</strong><br>12214884</p>
+          <p><strong>题目描述</strong><br>给定一个具有N个顶点的凸多边形，将顶点从1至N标号，每个顶点的权值都是一个正整数。将这个凸多边形划分成N−2个互不相交的三角形，试求这些三角形顶点的权值乘积和至少为多少。<br><strong>输入</strong><br>输入第一行为顶点数N（N≤50）<br>第二行依次为顶点1至顶点N的权值。<br><strong>输出</strong><br>输出仅一行，为这些三角形顶点的权值乘积和的最小值。<br><strong>样例输入</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">5</span><br><span class="line">121 122 123 245 231</span><br></pre></td></tr></table></figure>
+
+<p><strong>样例输出</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">12214884</span><br></pre></td></tr></table></figure>
+
 <p>​	这道题目看似几何问题，实际上居然是一道区间dp。大体思路不难：先选取两个顶点i，j连成一条边，然后在区间[i，j]内找到第三点k作为分割点，转移方程为：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = <span class="built_in">min</span>(dp[i][j], dp[i][k] + dp[k][j] + (i128)w[i] * w[k] * w[j]);</span><br></pre></td></tr></table></figure>
 
