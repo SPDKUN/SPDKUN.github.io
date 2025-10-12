@@ -151,7 +151,7 @@
   <div class="widget-wrap">
     <div class="widget">
       <h3 class="widget-title">标签</h3>
-      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%8C%BA%E9%97%B4dp/" rel="tag">区间dp</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%A0%91%E5%9E%8Bdp/" rel="tag">树型dp</a></li></ul>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E4%BA%8C%E5%88%86%E5%9B%BE-%E7%BD%91%E7%BB%9C%E6%B5%81/" rel="tag">二分图 网络流</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%8C%BA%E9%97%B4dp/" rel="tag">区间dp</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%A0%91%E5%9E%8Bdp/" rel="tag">树型dp</a></li></ul>
     </div>
   </div>
 
@@ -179,9 +179,9 @@
       <h3 class="widget-title">最新文章</h3>
       <ul>
         
-          <a class="recent-link" href="/2025/10/12/%E4%BA%8C%E5%88%86%E5%9B%BE%E5%8C%B9%E9%85%8D/" title="二分图匹配" >
+          <a class="recent-link" href="/2025/10/12/%E4%BA%8C%E5%88%86%E5%9B%BE%E5%8C%B9%E9%85%8D/" title="【二分图】Magic Potion" >
             <div class="recent-link-text">
-              二分图匹配
+              【二分图】Magic Potion
             </div>
           </a>
         
@@ -221,7 +221,7 @@
   
     
       <h1 itemprop="name">
-        <a class="p-name article-title" href="/2025/10/12/%E4%BA%8C%E5%88%86%E5%9B%BE%E5%8C%B9%E9%85%8D/">二分图匹配</a>
+        <a class="p-name article-title" href="/2025/10/12/%E4%BA%8C%E5%88%86%E5%9B%BE%E5%8C%B9%E9%85%8D/">【二分图】Magic Potion</a>
       </h1>
     
   
@@ -240,16 +240,25 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            0 词 
+            2.6k 词 
           </div>
         </div>
         
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%8C%E5%88%86%E5%9B%BE-%E7%BD%91%E7%BB%9C%E6%B5%81/" rel="tag">二分图 网络流</a></li></ul>
+
       </header>
       <div class="e-content article-entry" itemprop="articleBody">
         
           <div class="truncate-text">
             
-              
+              题目描述在一个岛屿上住着 n 位英雄和 m 只怪物。这些天怪物变得非常凶残，因此英雄们决定消灭岛上的怪物。然而，第 i 位英雄只能杀死属于集合 Mi 中的一只怪物。策略师 Joe 拥有 k 瓶魔法药水，每瓶药水可以增强一位英雄的能力，让他能够多杀死一只怪物。由于药水非常强大，每位英雄最多只能服用一瓶药水。请帮助 Joe 找出，如果他采用最优策略，英雄们最多能杀死多少只怪物。
+输入第一行包含三个整数 n, m, k（1 ≤ n, m, k ≤ 500）—— 分别表示英雄的数量、怪物的数量和药水的瓶数。接下来的 n 行中，每行首先包含一个整数 ti，表示集合 Mi 的大小，随后是 ti 个整数 Mi,j（1 ≤ j ≤ ti），表示第 i 位英雄能够杀死的怪物的索引（1 起始索引）（1 ≤ ti ≤ m，1 ≤ Mi,j ≤ m）。
+输出输出英雄们能够杀死的怪物的最大数量。
+样例输入12343 5 24 1 2 3 52 2 52 1 2
+
+样例输出14
+
+​	一眼看出是二分图匹配，用匈牙利算法跑了半天没跑出正确答案，原因就在于这个魔法药水。后来发现用网络流做更加简单：首先确立源点1...
             
           </div>
         
