@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>【树型dp】基环树上的dp</title>
+      <link href="/2025/10/14/%E5%9F%BA%E7%8E%AF%E6%A0%91%E4%B8%8A%E7%9A%84dp/"/>
+      <url>/2025/10/14/%E5%9F%BA%E7%8E%AF%E6%A0%91%E4%B8%8A%E7%9A%84dp/</url>
+      
+        <content type="html"><![CDATA[<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>Z国的骑士团是一个很有势力的组织，帮会中汇聚了来自各地的精英。他们劫富济贫，惩恶扬善，受到社会各界的赞扬。<br>最近发生了一件可怕的事情，邪恶的Y国发动了一场针对Z国的侵略战争。战火绵延五百里，在和平环境中安逸了数百年的Z国又怎能抵挡的住Y国的军队。于是人们把所有的希望都寄托在了骑士团的身上，就像期待有一个真龙天子的降生，带领正义打败邪恶。<br>骑士团是肯定具有打败邪恶势力的能力的，但是骑士们互相之间往往有一些矛盾。每个骑士都有且仅有一个自己最厌恶的骑士（当然不是他自己），他是绝对不会与自己最厌恶的人一同出征的。<br>战火绵延，人民生灵涂炭，组织起一个骑士军团加入战斗刻不容缓！国王交给了你一个艰巨的任务，从所有的骑士中选出一个骑士军团，使得军团内没有矛盾的两人（不存在一个骑士与他最痛恨的人一同被选入骑士军团的情况），并且，使得这支骑士军团最具有战斗力。<br>为了描述战斗力，我们将骑士按照1至N编号，给每名骑士一个战斗力的估计，一个军团的战斗力为所有骑士的战斗力总和。</p><h4 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h4><p>第一行包含一个正整数N，描述骑士团的人数。<br>接下来N行，每行两个正整数，按顺序描述每一名骑士的战斗力和他最痛恨的骑士。</p><h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><p>应包含一行，包含一个整数，表示你所选出的骑士军团的战斗力。</p><h4 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">10 2</span><br><span class="line">20 3</span><br><span class="line">30 1</span><br></pre></td></tr></table></figure><h4 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">30</span><br></pre></td></tr></table></figure><h4 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h4><p>对于30%的测试数据，满足N ≤ 10；<br>对于60%的测试数据，满足N ≤ 100；<br>对于80%的测试数据，满足N ≤ 10 000。<br>对于100%的测试数据，满足N ≤ 1 000 000，每名骑士的战斗力都是不大于  1 000 000的正整数。</p><p>​正如标题所说，这题是到树型dp，不过这题的树是个基环树。将每个骑士视作子节点，将这个骑士讨厌的骑士视为他的父节点，由此建树，只有在根节点处才有可能成环。因此这题的解法和经典题目“没有上司的舞会”很像，只不过要加入对基环树的判断。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> dp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【链表】单链表分段逆转</title>
       <link href="/2025/10/13/%E5%8D%95%E9%93%BE%E8%A1%A8%E5%88%86%E6%AE%B5%E9%80%86%E8%BD%AC/"/>
       <url>/2025/10/13/%E5%8D%95%E9%93%BE%E8%A1%A8%E5%88%86%E6%AE%B5%E9%80%86%E8%BD%AC/</url>
