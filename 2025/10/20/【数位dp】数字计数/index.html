@@ -14,18 +14,23 @@
   
 
   
-  <title>标签: dp | SPDKUN</title>
+  <title>【数位dp】数字计数 | SPDKUN</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="SPDKUN">
-<meta property="og:url" content="https://spdkun.github.io/tags/dp/index.html">
+  <meta name="description" content="题目描述 给定两个正整数 a 和 b，求在[a,b]中的所有整数中，每个数码(digit)各出现了多少次。 输入中仅包含一行两个整数 a、b，含义如上所述。 输出包含一行 10 个整数，分别表示 0-9 在[a,b]中出现了多少次。 样例输入11 99  样例输出19 20 20 20 20 20 20 20 20 20  提示30%的数据中，a&lt;&#x3D;b&lt;&#x3D;10^6^">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【数位dp】数字计数">
+<meta property="og:url" content="https://spdkun.github.io/2025/10/20/%E3%80%90%E6%95%B0%E4%BD%8Ddp%E3%80%91%E6%95%B0%E5%AD%97%E8%AE%A1%E6%95%B0/index.html">
 <meta property="og:site_name" content="SPDKUN">
+<meta property="og:description" content="题目描述 给定两个正整数 a 和 b，求在[a,b]中的所有整数中，每个数码(digit)各出现了多少次。 输入中仅包含一行两个整数 a、b，含义如上所述。 输出包含一行 10 个整数，分别表示 0-9 在[a,b]中出现了多少次。 样例输入11 99  样例输出19 20 20 20 20 20 20 20 20 20  提示30%的数据中，a&lt;&#x3D;b&lt;&#x3D;10^6^">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-10-20T11:43:47.000Z">
+<meta property="article:modified_time" content="2025-10-20T12:15:19.602Z">
 <meta property="article:author" content="spdkun">
+<meta property="article:tag" content="数位dp">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="SPDKUN" type="application/atom+xml">
@@ -224,63 +229,107 @@
     <div id="content-body">
        
 
-<div class="archive-main-card">
-    <div class="archive-top">
-      <div class="main-title-bar">
-        <div class="main-title-dot"></div>
-        <h1 class="article-title">归档</h1>
-      </div>    
+
+<article id="post-【数位dp】数字计数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        【数位dp】数字计数
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2025-10-20T11:43:47.000Z" itemprop="datePublished">2025-10-20</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    未分类 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            1.3k 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E4%BD%8Ddp/" rel="tag">数位dp</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p> 给定两个正整数 a 和 b，求在[a,b]中的所有整数中，每个数码(digit)各出现了多少次。</p>
+<h4 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h4><p>中仅包含一行两个整数 a、b，含义如上所述。</p>
+<h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><p>包含一行 10 个整数，分别表示 0-9 在[a,b]中出现了多少次。</p>
+<h4 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 99</span><br></pre></td></tr></table></figure>
+
+<h4 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">9 20 20 20 20 20 20 20 20 20</span><br></pre></td></tr></table></figure>
+
+<h4 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h4><p>30%的数据中，a&lt;&#x3D;b&lt;&#x3D;10^6^；<br>100%的数据中，a&lt;&#x3D;b&lt;&#x3D;10^12^。</p>
+<p>​	很多题解都是用递推做的，终于找到一篇dfs做的了。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line">ll a, b;</span><br><span class="line"><span class="comment">//dp[pos][当前位下目标dig的个数]</span></span><br><span class="line"><span class="comment">//在前pos位中出现sum个dig对后面的dfs没有影响，所以可以用dp[pos][sum]来记忆化</span></span><br><span class="line">ll dp[<span class="number">20</span>][<span class="number">20</span>], arr[<span class="number">20</span>];</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">dfs</span><span class="params">(<span class="type">int</span> pos, <span class="type">bool</span> limited, <span class="type">bool</span> leader, <span class="type">int</span> dig, ll sum)</span></span>&#123;</span><br><span class="line">  ll ans = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">//所有位处理完毕，返回sum</span></span><br><span class="line">  <span class="keyword">if</span> (pos &lt; <span class="number">0</span>) <span class="keyword">return</span> sum;</span><br><span class="line">  <span class="comment">//记忆化</span></span><br><span class="line">  <span class="keyword">if</span> (!limited &amp;&amp; !leader &amp;&amp; dp[pos][sum] != <span class="number">-1</span>) <span class="keyword">return</span> dp[pos][sum];</span><br><span class="line">  <span class="type">int</span> up = limited ? arr[pos] : <span class="number">9</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= up; i++)&#123;</span><br><span class="line">    ans += <span class="built_in">dfs</span>(pos - <span class="number">1</span>, limited &amp;&amp; (i == up), leader &amp;&amp; (i == <span class="number">0</span>), dig, sum + (!(leader &amp;&amp; i == <span class="number">0</span>) &amp;&amp; (i == dig)));</span><br><span class="line">    <span class="comment">//当i == dig 并且没有前导0时sum++</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (!limited &amp;&amp; !leader) dp[pos][sum] = ans;</span><br><span class="line">  <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">solve</span><span class="params">(ll x, ll d)</span></span>&#123;</span><br><span class="line">  <span class="built_in">memset</span>(dp, <span class="number">-1</span>, <span class="built_in">sizeof</span>(dp));</span><br><span class="line">  <span class="type">int</span> pos = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> (x == <span class="number">0</span>) arr[pos++] = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span>(x)&#123;</span><br><span class="line">    arr[pos++] = x % <span class="number">10</span>;</span><br><span class="line">    x /= <span class="number">10</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">dfs</span>(pos - <span class="number">1</span>, <span class="literal">true</span>, <span class="literal">true</span>, d, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">  cin.<span class="built_in">tie</span>(<span class="number">0</span>), cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">  cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">9</span>; i++)&#123;</span><br><span class="line">    cout &lt;&lt; <span class="built_in">solve</span>(b, i) - <span class="built_in">solve</span>(a - <span class="number">1</span>, i) &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+        
+      </div>
+
+         
     </div>
     
-    
-      
-      
-        
-        <div class="year-line">
-            <div class="year-num">2025</div>
-            <div class="dot-wrapper">
-                <div class="dot"></div>
-            </div>
-            <div class="article-count">2 篇文章</div>
-        </div>
-      
-      <a class="archive-article-link" href="/2025/10/18/Amount%20of%20Degrees/" title="【数位dp】Amount of Degrees">
-        <div class="date">10-18</div>
-        <div class="line">
-            <div class="dot"></div>
-        </div>
-        <div class="title">
-            <div class="title-inner">
-                
-                    【数位dp】Amount of Degrees
-                
-            </div>
-        </div>
-        <div class="tags">
-            #dp
-        </div>
-      </a>
-    
-      
-      
-      <a class="archive-article-link" href="/2025/10/14/%E5%9F%BA%E7%8E%AF%E6%A0%91%E4%B8%8A%E7%9A%84dp/" title="【树型dp】基环树上的dp">
-        <div class="date">10-14</div>
-        <div class="line">
-            <div class="dot"></div>
-        </div>
-        <div class="title">
-            <div class="title-inner">
-                
-                    【树型dp】基环树上的dp
-                
-            </div>
-        </div>
-        <div class="tags">
-            #dp
-        </div>
-      </a>
-    
+     
   </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left "
+    
+      href="/2025/10/21/%E3%80%90%E7%8A%B6%E5%8E%8Bdp%E3%80%91LittleKing/"
+      title=""
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+      
+        (No Title)
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2025/10/20/%E3%80%90%E6%95%B0%E4%BD%8Ddp%E3%80%91%E6%81%A87%E4%B8%8D%E6%88%90%E5%A6%BB/"
+      title="【数位dp】恨7不成妻"
+     >
+
+    <p class="title-text">
+      
+        【数位dp】恨7不成妻
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+
     </div>
     <div id="footer-wrapper">
       <footer id="footer">
