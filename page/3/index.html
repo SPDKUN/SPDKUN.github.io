@@ -14,7 +14,7 @@
   
 
   
-  <title>标签: 数位dp | SPDKUN</title>
+  <title>SPDKUN</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
@@ -22,7 +22,7 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="SPDKUN">
-<meta property="og:url" content="https://spdkun.github.io/tags/%E6%95%B0%E4%BD%8Ddp/index.html">
+<meta property="og:url" content="https://spdkun.github.io/page/3/index.html">
 <meta property="og:site_name" content="SPDKUN">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="spdkun">
@@ -43,14 +43,14 @@
   
   
     
-<div id="banner" class="">
+<div id="banner" class=" is_home ">
   <img src="/images/03.png" itemprop="image">
   <div id="banner-dim"></div>
 </div>
  
    
   <div id="main-grid" class="  ">
-    <div id="nav" class=""  >
+    <div id="nav" class=" is_home "  >
       <navbar id="navbar">
   <nav id="title-nav">
     <a href="/">
@@ -222,65 +222,269 @@
 </sidebar>
     </div>
     <div id="content-body">
-       
+      
+   
 
-<div class="archive-main-card">
-    <div class="archive-top">
-      <div class="main-title-bar">
-        <div class="main-title-dot"></div>
-        <h1 class="article-title">归档</h1>
-      </div>    
+
+<article id="post-二分图匹配" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2025/10/12/%E4%BA%8C%E5%88%86%E5%9B%BE%E5%8C%B9%E9%85%8D/">【二分图】Magic Potion</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2025-10-12T13:52:06.000Z" itemprop="datePublished">2025-10-12</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    未分类 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            2.6k 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%8C%E5%88%86%E5%9B%BE-%E7%BD%91%E7%BB%9C%E6%B5%81/" rel="tag">二分图 网络流</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            
+              题目描述在一个岛屿上住着 n 位英雄和 m 只怪物。这些天怪物变得非常凶残，因此英雄们决定消灭岛上的怪物。然而，第 i 位英雄只能杀死属于集合 Mi 中的一只怪物。策略师 Joe 拥有 k 瓶魔法药水，每瓶药水可以增强一位英雄的能力，让他能够多杀死一只怪物。由于药水非常强大，每位英雄最多只能服用一瓶药水。请帮助 Joe 找出，如果他采用最优策略，英雄们最多能杀死多少只怪物。
+输入第一行包含三个整数 n, m, k（1 ≤ n, m, k ≤ 500）—— 分别表示英雄的数量、怪物的数量和药水的瓶数。接下来的 n 行中，每行首先包含一个整数 ti，表示集合 Mi 的大小，随后是 ti 个整数 Mi,j（1 ≤ j ≤ ti），表示第 i 位英雄能够杀死的怪物的索引（1 起始索引）（1 ≤ ti ≤ m，1 ≤ Mi,j ≤ m）。
+输出输出英雄们能够杀死的怪物的最大数量。
+样例输入12343 5 24 1 2 3 52 2 52 1 2
+
+样例输出14
+
+​	一眼看出是二分图匹配，用匈牙利算法跑了半天没跑出正确答案，原因就在于这个魔法药水。后来发现用网络流做更加简单：首先确立源点1...
+            
+          </div>
+        
+      </div>
+
+         
     </div>
     
-    
+     
+    <a class="right-panel  non-pic  "
       
-      
-        
-        <div class="year-line">
-            <div class="year-num">2025</div>
-            <div class="dot-wrapper">
-                <div class="dot"></div>
-            </div>
-            <div class="article-count">2 篇文章</div>
-        </div>
-      
-      <a class="archive-article-link" href="/2025/10/20/%E3%80%90%E6%95%B0%E4%BD%8Ddp%E3%80%91%E6%95%B0%E5%AD%97%E8%AE%A1%E6%95%B0/" title="【数位dp】数字计数">
-        <div class="date">10-20</div>
-        <div class="line">
-            <div class="dot"></div>
-        </div>
-        <div class="title">
-            <div class="title-inner">
-                
-                    【数位dp】数字计数
-                
-            </div>
-        </div>
-        <div class="tags">
-            #数位dp
-        </div>
-      </a>
-    
-      
-      
-      <a class="archive-article-link" href="/2025/10/20/%E3%80%90%E6%95%B0%E4%BD%8Ddp%E3%80%91%E6%81%A87%E4%B8%8D%E6%88%90%E5%A6%BB/" title="【数位dp】恨7不成妻">
-        <div class="date">10-20</div>
-        <div class="line">
-            <div class="dot"></div>
-        </div>
-        <div class="title">
-            <div class="title-inner">
-                
-                    【数位dp】恨7不成妻
-                
-            </div>
-        </div>
-        <div class="tags">
-            #数位dp
-        </div>
-      </a>
-    
+      href="/2025/10/12/%E4%BA%8C%E5%88%86%E5%9B%BE%E5%8C%B9%E9%85%8D/" 
+    >
+       
+      <i class="fa-solid fa-angle-right non-pic"></i>
+       
+    </a>
+     
   </div>
+  
+</article>
+
+
+
+
+
+
+
+   
+
+
+<article id="post-study-dp-i" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2025/10/12/study-dp-i/">【树型dp】数字转换</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2025-10-12T12:50:57.000Z" itemprop="datePublished">2025-10-12</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    未分类 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            1.5k 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A0%91%E5%9E%8Bdp/" rel="tag">树型dp</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            
+              题目描述如果一个数x的约数和y（不包括他本身）比他本身小，那么x可以变成y，y也可以变成x。例如4可以变为3，1可以变为7。限定所有数字变换在不超过n的正整数范围内进行，求不断进行数字变换且不出现重复数字的最多变换步数。
+输入输入一个正整数n。
+输出输出不断进行数字变换且不出现重复数字的最多变换步数。
+样例输入17
+
+样例输出13
+
+提示一种方案为 4→3→1→7对于100%的数据，1≤n≤50000。
+​	这一题初看怎么也想不到会是dp，不过在看到n的数字给的比较小后就能想到建图。建图后可以发现得到了一个森林，一开始想跑两遍dfs找最长路径，但后来看了题解发现用树型dp可以只用跑一次dfs。
+​	让我们令du[]表示从该节点出发的最长路，dv[]表示次长路，那么转移方程是：
+12345678910for (auto v : adj[u])&#123;  if (v == fa) continue;  dfs(v, u);  if (du[v] &gt; du[u] - 1)&#123;//比最长路要大    dv[u] = du[u] - 1;//原最长路变次长路    du[...
+            
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  non-pic  "
+      
+      href="/2025/10/12/study-dp-i/" 
+    >
+       
+      <i class="fa-solid fa-angle-right non-pic"></i>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+   
+
+
+<article id="post-study-dp-c" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2025/10/11/study-dp-c/">【区间dp】凸多边形的划分</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2025-10-11T08:01:22.000Z" itemprop="datePublished">2025-10-11</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    未分类 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            1.3k 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E9%97%B4dp/" rel="tag">区间dp</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            
+              题目描述给定一个具有N个顶点的凸多边形，将顶点从1至N标号，每个顶点的权值都是一个正整数。将这个凸多边形划分成N−2个互不相交的三角形，试求这些三角形顶点的权值乘积和至少为多少。输入输入第一行为顶点数N（N≤50）第二行依次为顶点1至顶点N的权值。输出输出仅一行，为这些三角形顶点的权值乘积和的最小值。样例输入
+125121 122 123 245 231
+
+样例输出
+112214884
+
+​	这道题目看似几何问题，实际上居然是一道区间dp。大体思路不难：先选取两个顶点i，j连成一条边，然后在区间[i，j]内找到第三点k作为分割点，转移方程为：
+1dp[i][j] = min(dp[i][j], dp[i][k] + dp[k][j] + (i128)w[i] * w[k] * w[j]);
+
+显而易见在初始化时相邻的两个点连成的边应该初始化为0，其余边初始化为inf。
+还有一点要注意，TK给的数据数值特别大，要开int128或者高精度！
+123456789101112131415161718192021222324252627282930313233343536373839404...
+            
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  non-pic  "
+      
+      href="/2025/10/11/study-dp-c/" 
+    >
+       
+      <i class="fa-solid fa-angle-right non-pic"></i>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  <nav id="page-nav">
+    <!-- 在第二页时 page.prev_link 不知为何无法返回正确的链接 -->
+    <a id="prev-btn" class="page-nav-btn " href=" /page/2/  ">
+      <i class="fa-solid fa-angle-left"></i>
+    </a>
+    <div id="num-bar">
+      <a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>  
+    </div>
+    <a id="next-btn" class="page-nav-btn disabled" href="/">
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+  </nav>
+
+
     </div>
     <div id="footer-wrapper">
       <footer id="footer">
