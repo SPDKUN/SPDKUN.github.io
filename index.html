@@ -167,9 +167,14 @@
       <h3 class="widget-title">归档</h3>
       
       
+        <a class="archive-link" href="/archives/2025/11 ">
+          十一月 2025 
+          <div class="archive-count">1 </div>
+        </a>
+      
         <a class="archive-link" href="/archives/2025/10 ">
           十月 2025 
-          <div class="archive-count">23 </div>
+          <div class="archive-count">24 </div>
         </a>
       
     </div>
@@ -183,33 +188,33 @@
       <h3 class="widget-title">最新文章</h3>
       <ul>
         
+          <a class="recent-link" href="/2025/11/04/%E3%80%90%E6%A0%91%E4%B8%8A%E5%80%8D%E5%A2%9E%E3%80%91The%202025%20ICPC%20Asia%20Xi'an%20Regional%20Contest%20J.%20January's%20Color/" title="J. January's Color" >
+            <div class="recent-link-text">
+              J. January&#39;s Color
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2025/10/31/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97%E4%BC%98%E5%8C%96dp/" title="【笔记】单调队列优化dp" >
+            <div class="recent-link-text">
+              【笔记】单调队列优化dp
+            </div>
+          </a>
+        
           <a class="recent-link" href="/2025/10/27/%E9%93%BE%E5%BC%8F%E9%98%9F%E5%88%97/" title="链式队列" >
             <div class="recent-link-text">
               链式队列
             </div>
           </a>
         
-          <a class="recent-link" href="/2025/10/27/2025-10-27/" title="" >
+          <a class="recent-link" href="/2025/10/27/%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97/" title="循环队列" >
             <div class="recent-link-text">
-              (no title)
-            </div>
-          </a>
-        
-          <a class="recent-link" href="/2025/10/27/%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97/" title="" >
-            <div class="recent-link-text">
-              (no title)
+              循环队列
             </div>
           </a>
         
           <a class="recent-link" href="/2025/10/27/%E5%B8%A6%E5%A4%B4%E8%8A%82%E7%82%B9%E7%9A%84%E9%93%BE%E6%A0%88/" title="带头节点的链栈" >
             <div class="recent-link-text">
               带头节点的链栈
-            </div>
-          </a>
-        
-          <a class="recent-link" href="/2025/10/27/%E9%A1%BA%E5%BA%8F%E6%A0%88/" title="顺序栈" >
-            <div class="recent-link-text">
-              顺序栈
             </div>
           </a>
         
@@ -223,6 +228,166 @@
     </div>
     <div id="content-body">
       
+   
+
+
+<article id="post-【树上倍增】The 2025 ICPC Asia Xi&#39;an Regional Contest J. January&#39;s Color" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2025/11/04/%E3%80%90%E6%A0%91%E4%B8%8A%E5%80%8D%E5%A2%9E%E3%80%91The%202025%20ICPC%20Asia%20Xi'an%20Regional%20Contest%20J.%20January's%20Color/">J. January&#39;s Color</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2025-11-03T16:00:00.000Z" itemprop="datePublished">2025-11-04</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    未分类 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            3.5k 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A0%91/" rel="tag">树</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            
+              ![[statement_14690.pdf]]
+​	题目大意是，有一颗根为1的带权树，这颗树不存在只有一个儿子的父节点。现在有两种获得节点的方式，一是消耗权值获得一个节点，二是失去两个已有的兄弟节点获得它们的父节点。现在给出多次询问，每次询问会先送你一个节点并且告诉你目标节点。在最终只拥有目标节点的情况下，判断能否通过送的节点得到目标节点，如果能，求出最小权值费用。​	1、对于每个节点，获得它的费用是它自己的权值或则它儿子中最小的两个费用之和，可以用树上dp来计算。​	2、要判断送的节点x能否得到目标节点y，那y一定是x的祖先。通过dfs的出入栈顺序可以判断：
+123bool is_pre(int son, int fa)&#123;  return in[fa] &lt;= in[son] &amp;&amp; out[son] &lt;= out[fa];&#125;
+​	3、快速计算费用，用到树上倍增。
+123456789up[maxn][20];//up[i][j]表示节点i的(1 &lt;&lt; j)祖先;sum[maxn][20];//sum[i][j]表示节点i...
+            
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  non-pic  "
+      
+      href="/2025/11/04/%E3%80%90%E6%A0%91%E4%B8%8A%E5%80%8D%E5%A2%9E%E3%80%91The%202025%20ICPC%20Asia%20Xi'an%20Regional%20Contest%20J.%20January's%20Color/" 
+    >
+       
+      <i class="fa-solid fa-angle-right non-pic"></i>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+   
+
+
+<article id="post-【笔记】单调队列优化dp" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2025/10/31/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97%E4%BC%98%E5%8C%96dp/">【笔记】单调队列优化dp</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2025-10-30T16:00:00.000Z" itemprop="datePublished">2025-10-31</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    未分类 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            1.5k 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dp/" rel="tag">dp</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            
+               ​	单调队列就是有排好序的队列，用于维护区间最值。以下面一题作为引入：
+题目描述一个含有 $n$ 项的数列，求出每一项前的 $m$ 个数到它这个区间内的最小值。若前面的数不足 $m$ 项则从第 $1$ 个数开始，若前面没有数则输出 $0$。
+输入格式第一行两个整数，分别表示 $n$，$m$。
+第二行，$n$ 个正整数，为所给定的数列 $a_i$。
+输出格式$n$ 行，每行一个整数，第 $i$ 个数为序列中 $a_i$ 之前 $m$ 个数的最小值。
+输入输出样例 #1输入 #1126 27 8 1 4 3 2
+
+输出 #1123456077113
+
+说明&#x2F;提示对于 $100%$ 的数据，保证 $1\le m\le n\le2\times10^6$，$1\le a_i\le3\times10^7$。
+​	找每个区间最小值，可以用滑动窗口扫一遍。通常会想到set+map的组合，前者负责维护单调，后者维护元素个数，但时间复杂度为O(NlogN)，过不了题目的2e6。因此要想办法压到O(N)。​	现在设计一个单调队列，小的元素放前面，大的但是新的元素放后面。每次扫的新的元素时，...
+            
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  non-pic  "
+      
+      href="/2025/10/31/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97%E4%BC%98%E5%8C%96dp/" 
+    >
+       
+      <i class="fa-solid fa-angle-right non-pic"></i>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+
+
+
+
+
+
    
 
 
@@ -299,77 +464,6 @@
    
 
 
-<article id="post-2025-10-27" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2025/10/27/2025-10-27/">无标题</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2025-10-27T11:52:14.951Z" itemprop="datePublished">2025-10-27</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-    未分类 
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            0 词 
-          </div>
-        </div>
-        
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-              
-            
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  non-pic  "
-      
-      href="/2025/10/27/2025-10-27/" 
-    >
-       
-      <i class="fa-solid fa-angle-right non-pic"></i>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-   
-
-
 <article id="post-循环队列" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
    
   <div class="article-inner">
@@ -381,7 +475,7 @@
   
     
       <h1 itemprop="name">
-        <a class="p-name article-title" href="/2025/10/27/%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97/">无标题</a>
+        <a class="p-name article-title" href="/2025/10/27/%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97/">循环队列</a>
       </h1>
     
   
@@ -669,6 +763,88 @@
    
 
 
+<article id="post-中缀表达式转后缀表达式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2025/10/27/%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BD%AC%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F/">中缀表达式转后缀表达式</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2025-10-26T16:00:00.000Z" itemprop="datePublished">2025-10-27</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    未分类 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            206 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%89%B9%E6%AE%8A%E7%BA%BF%E6%80%A7%E8%A1%A8/" rel="tag">特殊线性表</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            
+              用于算式计算，需要注意处理以下六种情况：
+1、空格不处理
+2、运算数直接输出
+3、左括号直接压入栈
+4、右括号，不断输出栈顶元素并出栈，直到遇见左括号
+5、运算符，优先级大于栈顶运算符时直接入栈，否则不断输出栈顶元素并出栈直到优先级大于栈顶运算符或则空栈。
+6、处理完成，将栈中剩余运算符一并输出
+
+只要知道规则就简单了，看代码：
+123#include&lt;bit/stdc++.h&gt;using namespace std;
+            
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  non-pic  "
+      
+      href="/2025/10/27/%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BD%AC%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F/" 
+    >
+       
+      <i class="fa-solid fa-angle-right non-pic"></i>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+   
+
+
 <article id="post-【树】完全二叉树后序变层序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
    
   <div class="article-inner">
@@ -811,165 +987,6 @@
     <a class="right-panel  non-pic  "
       
       href="/2025/10/22/%E3%80%90%E7%8A%B6%E5%8E%8Bdp%E3%80%91%E7%8C%9B%E5%85%BD%E5%8A%A8%E7%89%A9%E5%9B%AD/" 
-    >
-       
-      <i class="fa-solid fa-angle-right non-pic"></i>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-   
-
-
-<article id="post-【状压dp】炮兵阵地" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2025/10/22/%E3%80%90%E7%8A%B6%E5%8E%8Bdp%E3%80%91%E7%82%AE%E5%85%B5%E9%98%B5%E5%9C%B0/">【状压dp】炮兵阵地</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2025-10-22T12:04:40.000Z" itemprop="datePublished">2025-10-22</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-    未分类 
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            3.4k 词 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%8A%B6%E5%8E%8Bdp/" rel="tag">状压dp</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-              题目描述魔法学院打算在N×M的网格地图上部署炮兵部队以对抗猛兽军团。一个N×M的地图由N行M列组成，地图的每一格可能是山地（用“H”表示），也可能是平原（用“P”表示），如图所示。在每一格平原地形上最多可以布置一支炮兵部队（山地上不能够部署炮兵部队）；一支炮兵部队在地图上的攻击范围为图中黑色区域。
-
-如果在地图中的灰色所标识的平原上部署一支炮兵部队，则图中的黑色的网格表示它能够攻击到的区域：沿横向左右各两格，沿纵向上下各两格。图上其他白色网格均攻击不到。从图上可见炮兵的攻击范围不受地形的影响。现在，魔法学院规划如何部署炮兵部队，在防止误伤的前提下（保证任何两支炮兵部队之间不能互相攻击，即任何一支炮兵部队都不在其他支炮兵部队的攻击范围内），在整个地图区域内最多能够摆放多少炮兵部队。
-输入第一行包含两个由空格分割开的正整数，分别表示N和M。接下来的N行，每一行含有连续的M个字符(P或者H)，中间没有空格。按顺序表示地图中每一行的数据。N≤ 100；M ≤ 10。
-输出仅一行，包含一个整数K，表示最多能摆放的炮兵部队的数量。
-样例输入复制
-1234565 4PHPPPPHHPPPPPH...
-            
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  non-pic  "
-      
-      href="/2025/10/22/%E3%80%90%E7%8A%B6%E5%8E%8Bdp%E3%80%91%E7%82%AE%E5%85%B5%E9%98%B5%E5%9C%B0/" 
-    >
-       
-      <i class="fa-solid fa-angle-right non-pic"></i>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-   
-
-
-<article id="post-【状压dp】涂抹果酱" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2025/10/22/%E3%80%90%E7%8A%B6%E5%8E%8Bdp%E3%80%91%E6%B6%82%E6%8A%B9%E6%9E%9C%E9%85%B1/">【状压dp】涂抹果酱</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2025-10-22T00:06:40.000Z" itemprop="datePublished">2025-10-22</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-    未分类 
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            5.5k 词 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%8A%B6%E5%8E%8Bdp/" rel="tag">状压dp</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-              题目描述Tyvj 两周年庆典要到了，Sam 想为 Tyvj 做一个大蛋糕。蛋糕俯视图是一个 N×M 的矩形，它被划分成 N×M 个边长为 1×1 的小正方形区域（可以把蛋糕当成 N 行 M 列的矩阵）。蛋糕很快做好了，但光秃秃的蛋糕肯定不好看！所以，Sam 要在蛋糕的上表面涂抹果酱。果酱有三种，分别是红果酱、绿果酱、蓝果酱，三种果酱的编号分别为 1,2,3。为了保证蛋糕的视觉效果，Admin 下达了死命令：相邻的区域严禁使用同种果酱。但 Sam 在接到这条命令之前，已经涂好了蛋糕第 K 行的果酱，且无法修改。现在 Sam 想知道：能令 Admin 满意的涂果酱方案有多少种。请输出方案数 mod 106。若不存在满足条件的方案，请输出0。
-输入输入共三行。第一行：N,M；第二行：K；第三行：M个整数，表示第K行的方案。字母的详细含义见题目描述，其他参见样例。
-输出输出仅一行，为可行的方案总数。
-样例输入1232 2 1 2 3
-
-样例输出13
-
-提示对于30%的数据，1≤N×M≤20；对于60%的数据，1≤N≤1000,1≤M≤3；对于100%的数据，1≤N≤10000,1≤M≤5...
-            
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  non-pic  "
-      
-      href="/2025/10/22/%E3%80%90%E7%8A%B6%E5%8E%8Bdp%E3%80%91%E6%B6%82%E6%8A%B9%E6%9E%9C%E9%85%B1/" 
     >
        
       <i class="fa-solid fa-angle-right non-pic"></i>
