@@ -28,7 +28,7 @@
 <meta property="og:description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354#include &lt;bits&#x2F;stdc++.h&gt;using namespace std;typedef long long ll;typedef int Position;typedef i">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-10-27T10:17:15.000Z">
-<meta property="article:modified_time" content="2025-10-27T10:54:57.067Z">
+<meta property="article:modified_time" content="2025-12-15T02:11:28.370Z">
 <meta property="article:author" content="spdkun">
 <meta property="article:tag" content="特殊线性表">
 <meta name="twitter:card" content="summary">
@@ -72,9 +72,11 @@
     
       <a class="main-nav-link" href="/">Home</a>
     
-      <a class="main-nav-link" href="/archives">Archives</a>
+      <a class="main-nav-link" href="/archives">Life</a>
     
-      <a class="main-nav-link" href="/about">About</a>
+      <a class="main-nav-link" href="/acm">ACM</a>
+    
+      <a class="main-nav-link" href="/other">Other</a>
     
       <a class="main-nav-link" href="/search">Search</a>
     
@@ -99,9 +101,11 @@
     
       <a class="nav-dropdown-link" href="/">Home</a>
     
-      <a class="nav-dropdown-link" href="/archives">Archives</a>
+      <a class="nav-dropdown-link" href="/archives">Life</a>
     
-      <a class="nav-dropdown-link" href="/about">About</a>
+      <a class="nav-dropdown-link" href="/acm">ACM</a>
+    
+      <a class="nav-dropdown-link" href="/other">Other</a>
     
       <a class="nav-dropdown-link" href="/search">Search</a>
     
@@ -172,9 +176,14 @@
       <h3 class="widget-title">归档</h3>
       
       
+        <a class="archive-link" href="/archives/2025/12 ">
+          十二月 2025 
+          <div class="archive-count">1 </div>
+        </a>
+      
         <a class="archive-link" href="/archives/2025/11 ">
           十一月 2025 
-          <div class="archive-count">1 </div>
+          <div class="archive-count">5 </div>
         </a>
       
         <a class="archive-link" href="/archives/2025/10 ">
@@ -193,33 +202,33 @@
       <h3 class="widget-title">最新文章</h3>
       <ul>
         
-          <a class="recent-link" href="/2025/11/04/%E3%80%90%E6%A0%91%E4%B8%8A%E5%80%8D%E5%A2%9E%E3%80%91The%202025%20ICPC%20Asia%20Xi'an%20Regional%20Contest%20J.%20January's%20Color/" title="J. January's Color" >
+          <a class="recent-link" href="/2025/12/03/STL/" title="" >
             <div class="recent-link-text">
-              J. January&#39;s Color
+              (no title)
             </div>
           </a>
         
-          <a class="recent-link" href="/2025/10/31/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97%E4%BC%98%E5%8C%96dp/" title="【笔记】单调队列优化dp" >
+          <a class="recent-link" href="/2025/11/18/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96dp/" title="【笔记】斜率优化dp" >
             <div class="recent-link-text">
-              【笔记】单调队列优化dp
+              【笔记】斜率优化dp
             </div>
           </a>
         
-          <a class="recent-link" href="/2025/10/27/%E9%93%BE%E5%BC%8F%E9%98%9F%E5%88%97/" title="链式队列" >
+          <a class="recent-link" href="/2025/11/17/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E3%80%91%E5%9B%BE/" title="" >
             <div class="recent-link-text">
-              链式队列
+              (no title)
             </div>
           </a>
         
-          <a class="recent-link" href="/2025/10/27/%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97/" title="循环队列" >
+          <a class="recent-link" href="/2025/11/10/%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91dp%E5%90%88%E9%9B%86/" title="【模板】dp合集" >
             <div class="recent-link-text">
-              循环队列
+              【模板】dp合集
             </div>
           </a>
         
-          <a class="recent-link" href="/2025/10/27/%E5%B8%A6%E5%A4%B4%E8%8A%82%E7%82%B9%E7%9A%84%E9%93%BE%E6%A0%88/" title="带头节点的链栈" >
+          <a class="recent-link" href="/2025/11/06/%E3%80%90%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97%E3%80%91%E6%97%85%E8%A1%8C%E9%97%AE%E9%A2%98/" title="【单调队列】旅行问题" >
             <div class="recent-link-text">
-              带头节点的链栈
+              【单调队列】旅行问题
             </div>
           </a>
         
@@ -276,7 +285,7 @@
       </header>
       <div class="e-content article-entry" itemprop="articleBody">
         
-          <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> Position;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> ElementType;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">SNode</span> * PtrToSNode;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">SNode</span>&#123;</span><br><span class="line">  ElementType * Data;<span class="comment">//动态数组</span></span><br><span class="line">  Position Top;<span class="comment">//栈顶</span></span><br><span class="line">  <span class="type">int</span> MaxSize;<span class="comment">//最大容量</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> PtrToSNode Stack;</span><br><span class="line"></span><br><span class="line"><span class="function">Stack <span class="title">CreateStack</span><span class="params">(<span class="type">int</span> MaxSize)</span></span>&#123;</span><br><span class="line">  Stack S = (Stack)<span class="built_in">malloc</span>(<span class="built_in">sizeof</span>(<span class="keyword">struct</span> SNode));<span class="comment">//初始化一个栈</span></span><br><span class="line">  S-&gt;Data = (ElementType *)<span class="built_in">malloc</span>(MaxSize * <span class="built_in">sizeof</span>(ElementType));<span class="comment">//给动态数组初始化大小</span></span><br><span class="line">  S-&gt;Top = <span class="number">-1</span>;<span class="comment">//栈顶初始化为1，代表没有元素</span></span><br><span class="line">  S-&gt;MaxSize = MaxSize;<span class="comment">//赋值栈的容量</span></span><br><span class="line">  <span class="keyword">return</span> S;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isfull</span><span class="params">(Stack S)</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> S-&gt;Top == S-&gt;MaxSize - <span class="number">1</span>;<span class="comment">//数组满了</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">push</span><span class="params">(Stack S, ElementType X)</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">isfull</span>(S))&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;FULL!!\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  S-&gt;Data[++S-&gt;Top] = X;<span class="comment">//先加top再赋值</span></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isempty</span><span class="params">(Stack S)</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> S-&gt;Top == <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ElementType <span class="title">pos</span><span class="params">(Stack S)</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">isempty</span>(S))&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;EMPTY!!\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> S-&gt;Data[S-&gt;Top--];<span class="comment">//先吐出元素再减top</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">  cin.<span class="built_in">tie</span>(<span class="number">0</span>), cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+          <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> Position;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> ElementType;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">SNode</span> * PtrToSNode;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">SNode</span>&#123;</span><br><span class="line">  ElementType * Data;<span class="comment">//动态数组</span></span><br><span class="line">  Position Top;<span class="comment">//栈顶</span></span><br><span class="line">  <span class="type">int</span> MaxSize;<span class="comment">//最大容量</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> PtrToSNode Stack;</span><br><span class="line"></span><br><span class="line"><span class="function">Stack <span class="title">CreateStack</span><span class="params">(<span class="type">int</span> MaxSize)</span></span>&#123;</span><br><span class="line">  Stack S = (Stack)<span class="built_in">malloc</span>(<span class="built_in">sizeof</span>(<span class="keyword">struct</span> SNode));<span class="comment">//初始化一个栈</span></span><br><span class="line">  S-&gt;Data = (ElementType *)<span class="built_in">malloc</span>(MaxSize * <span class="built_in">sizeof</span>(ElementType));<span class="comment">//给动态数组初始化大小</span></span><br><span class="line">  S-&gt;Top = <span class="number">-1</span>;<span class="comment">//栈顶初始化为1，代表没有元素</span></span><br><span class="line">  S-&gt;MaxSize = MaxSize;<span class="comment">//赋值栈的容量</span></span><br><span class="line">  <span class="keyword">return</span> S;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isfull</span><span class="params">(Stack S)</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> S-&gt;Top == S-&gt;MaxSize - <span class="number">1</span>;<span class="comment">//数组满了</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">push</span><span class="params">(Stack S, ElementType X)</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">isfull</span>(S))&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;FULL!!\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  S-&gt;Data[++S-&gt;Top] = X;<span class="comment">//先加top再赋值</span></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isempty</span><span class="params">(Stack S)</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> S-&gt;Top == <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ElementType <span class="title">pop</span><span class="params">(Stack S)</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">isempty</span>(S))&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;EMPTY!!\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> S-&gt;Data[S-&gt;Top--];<span class="comment">//先吐出元素再减top</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">  cin.<span class="built_in">tie</span>(<span class="number">0</span>), cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
         
@@ -332,7 +341,7 @@
   
   <div id="footer-info" class="inner">
     
-    &copy; 2025 SPDKUN<br>
+    &copy; 2026 SPDKUN<br>
     Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
   </div>
 </footer>
