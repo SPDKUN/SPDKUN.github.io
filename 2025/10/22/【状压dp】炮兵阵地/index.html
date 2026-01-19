@@ -20,20 +20,18 @@
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta name="description" content="题目描述魔法学院打算在N×M的网格地图上部署炮兵部队以对抗猛兽军团。一个N×M的地图由N行M列组成，地图的每一格可能是山地（用“H”表示），也可能是平原（用“P”表示），如图所示。在每一格平原地形上最多可以布置一支炮兵部队（山地上不能够部署炮兵部队）；一支炮兵部队在地图上的攻击范围为图中黑色区域。  如果在地图中的灰色所标识的平原上部署一支炮兵部队，则图中的黑色的网格表示它能够攻击到的区域：沿横向">
+  <meta name="description" content="题目描述魔法学院打算在N×M的网格地图上部署炮兵部队以对抗猛兽军团。一个N×M的地图由N行M列组成，地图的每一格可能是山地（用“H”表示），也可能是平原（用“P”表示），如图所示。在每一格平原地形上最多可以布置一支炮兵部队（山地上不能够部署炮兵部队）；一支炮兵部队在地图上的攻击范围为图中黑色区域。 159 如果在地图中的灰色所标识的平原上部署一支炮兵部队，则图中的黑色的网格表示它能够攻击到的区域：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【状压dp】炮兵阵地">
 <meta property="og:url" content="https://spdkun.github.io/2025/10/22/%E3%80%90%E7%8A%B6%E5%8E%8Bdp%E3%80%91%E7%82%AE%E5%85%B5%E9%98%B5%E5%9C%B0/index.html">
 <meta property="og:site_name" content="SPDKUN">
-<meta property="og:description" content="题目描述魔法学院打算在N×M的网格地图上部署炮兵部队以对抗猛兽军团。一个N×M的地图由N行M列组成，地图的每一格可能是山地（用“H”表示），也可能是平原（用“P”表示），如图所示。在每一格平原地形上最多可以布置一支炮兵部队（山地上不能够部署炮兵部队）；一支炮兵部队在地图上的攻击范围为图中黑色区域。  如果在地图中的灰色所标识的平原上部署一支炮兵部队，则图中的黑色的网格表示它能够攻击到的区域：沿横向">
+<meta property="og:description" content="题目描述魔法学院打算在N×M的网格地图上部署炮兵部队以对抗猛兽军团。一个N×M的地图由N行M列组成，地图的每一格可能是山地（用“H”表示），也可能是平原（用“P”表示），如图所示。在每一格平原地形上最多可以布置一支炮兵部队（山地上不能够部署炮兵部队）；一支炮兵部队在地图上的攻击范围为图中黑色区域。 159 如果在地图中的灰色所标识的平原上部署一支炮兵部队，则图中的黑色的网格表示它能够攻击到的区域：">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://180.201.136.244/upload/image/20170930/20170930180818_86137.jpg">
 <meta property="article:published_time" content="2025-10-22T12:04:40.000Z">
-<meta property="article:modified_time" content="2025-10-22T12:14:42.777Z">
+<meta property="article:modified_time" content="2026-01-09T07:30:50.792Z">
 <meta property="article:author" content="spdkun">
-<meta property="article:tag" content="状压dp">
+<meta property="article:tag" content="dp">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://180.201.136.244/upload/image/20170930/20170930180818_86137.jpg">
   
     <link rel="alternate" href="/atom.xml" title="SPDKUN" type="application/atom+xml">
   
@@ -162,7 +160,7 @@
   <div class="widget-wrap">
     <div class="widget">
       <h3 class="widget-title">标签</h3>
-      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/dp/" rel="tag">dp</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E4%BA%8C%E5%88%86%E5%9B%BE-%E7%BD%91%E7%BB%9C%E6%B5%81/" rel="tag">二分图 网络流</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%8C%BA%E9%97%B4dp/" rel="tag">区间dp</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%95%B0%E4%BD%8Ddp/" rel="tag">数位dp</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%A0%91/" rel="tag">树</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%A0%91%E5%9E%8Bdp/" rel="tag">树型dp</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%A8%A1%E6%9D%BF/" rel="tag">模板</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%89%B9%E6%AE%8A%E7%BA%BF%E6%80%A7%E8%A1%A8/" rel="tag">特殊线性表</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%8A%B6%E5%8E%8Bdp/" rel="tag">状压dp</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%BA%BF%E6%80%A7%E8%A1%A8/" rel="tag">线性表</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a></li></ul>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/dp/" rel="tag">dp</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%87%A0%E4%BD%95/" rel="tag">几何</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag">图论</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">字符串</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag">数论</a></li></ul>
     </div>
   </div>
 
@@ -173,6 +171,11 @@
     <div class="widget">
       <h3 class="widget-title">归档</h3>
       
+      
+        <a class="archive-link" href="/archives/2026/01 ">
+          一月 2026 
+          <div class="archive-count">37 </div>
+        </a>
       
         <a class="archive-link" href="/archives/2025/12 ">
           十二月 2025 
@@ -200,33 +203,33 @@
       <h3 class="widget-title">最新文章</h3>
       <ul>
         
-          <a class="recent-link" href="/2025/12/03/STL/" title="" >
+          <a class="recent-link" href="/2026/01/19/%E3%80%90%E6%95%B0%E8%AE%BA%E3%80%91%E6%95%B4%E6%95%B0%E5%88%92%E5%88%86/" title="【数论】整数划分" >
             <div class="recent-link-text">
-              (no title)
+              【数论】整数划分
             </div>
           </a>
         
-          <a class="recent-link" href="/2025/11/18/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96dp/" title="【笔记】斜率优化dp" >
+          <a class="recent-link" href="/2026/01/19/%E3%80%90%E5%9B%BE%E8%AE%BA%E3%80%91%E6%A0%91%E7%9A%84%E9%87%8D%E5%BF%83/" title="【图论】树的重心" >
             <div class="recent-link-text">
-              【笔记】斜率优化dp
+              【图论】树的重心
             </div>
           </a>
         
-          <a class="recent-link" href="/2025/11/17/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E3%80%91%E5%9B%BE/" title="" >
+          <a class="recent-link" href="/2026/01/19/%E3%80%90%E5%9B%BE%E8%AE%BA%E3%80%91Kosaraju%E7%AE%97%E6%B3%95/" title="【图论】Kosaraju算法" >
             <div class="recent-link-text">
-              (no title)
+              【图论】Kosaraju算法
             </div>
           </a>
         
-          <a class="recent-link" href="/2025/11/10/%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91dp%E5%90%88%E9%9B%86/" title="【模板】dp合集" >
+          <a class="recent-link" href="/2026/01/18/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E3%80%91%E6%92%A4%E9%94%80%E5%B9%B6%E6%9F%A5%E9%9B%86/" title="【数据结构】动态并查集" >
             <div class="recent-link-text">
-              【模板】dp合集
+              【数据结构】动态并查集
             </div>
           </a>
         
-          <a class="recent-link" href="/2025/11/06/%E3%80%90%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97%E3%80%91%E6%97%85%E8%A1%8C%E9%97%AE%E9%A2%98/" title="【单调队列】旅行问题" >
+          <a class="recent-link" href="/2026/01/18/%E3%80%90%E5%9B%BE%E8%AE%BA%E3%80%91%E5%88%86%E5%B1%82bfs/" title="【图论】分层bfs" >
             <div class="recent-link-text">
-              【单调队列】旅行问题
+              【图论】分层bfs
             </div>
           </a>
         
@@ -278,13 +281,13 @@
           </div>
         </div>
         
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%8A%B6%E5%8E%8Bdp/" rel="tag">状压dp</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dp/" rel="tag">dp</a></li></ul>
 
       </header>
       <div class="e-content article-entry" itemprop="articleBody">
         
           <h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>魔法学院打算在N×M的网格地图上部署炮兵部队以对抗猛兽军团。一个N×M的地图由N行M列组成，地图的每一格可能是山地（用“H”表示），也可能是平原（用“P”表示），如图所示。在每一格平原地形上最多可以布置一支炮兵部队（山地上不能够部署炮兵部队）；一支炮兵部队在地图上的攻击范围为图中黑色区域。</p>
-<p><img src="http://180.201.136.244/upload/image/20170930/20170930180818_86137.jpg" alt="img"></p>
+<p>159</p>
 <p>如果在地图中的灰色所标识的平原上部署一支炮兵部队，则图中的黑色的网格表示它能够攻击到的区域：沿横向左右各两格，沿纵向上下各两格。图上其他白色网格均攻击不到。从图上可见炮兵的攻击范围不受地形的影响。<br>现在，魔法学院规划如何部署炮兵部队，在防止误伤的前提下（保证任何两支炮兵部队之间不能互相攻击，即任何一支炮兵部队都不在其他支炮兵部队的攻击范围内），在整个地图区域内最多能够摆放多少炮兵部队。</p>
 <h4 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h4><p>第一行包含两个由空格分割开的正整数，分别表示N和M。<br>接下来的N行，每一行含有连续的M个字符(P或者H)，中间没有空格。按顺序表示地图中每一行的数据。N≤ 100；M ≤ 10。</p>
 <h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><p>仅一行，包含一个整数K，表示最多能摆放的炮兵部队的数量。</p>

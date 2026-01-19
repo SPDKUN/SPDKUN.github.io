@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="true" > 
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+
+  
+  <title>【数据结构】李超线段树 | SPDKUN</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <meta name="description" content="在平面直角坐标系下维护两个操作：  在平面上加入一条线段 给定一个数k，询问与直线x &#x3D; k相交的线段的交点纵坐标最值  李超线段树可以实现以上操作。 理解：李超线段树每个节点存储的是一个区间[l, r]上值最大的线段的编号的懒标记，它不保证存储[l, r]的节点一定在区间上都是最值，但当询问x &#x3D; k时，在所有包含k的区间[l, r]中一定存在最值。 数据定义： 123456">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【数据结构】李超线段树">
+<meta property="og:url" content="https://spdkun.github.io/2026/01/12/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E3%80%91%E6%9D%8E%E8%B6%85%E7%BA%BF%E6%AE%B5%E6%A0%91/index.html">
+<meta property="og:site_name" content="SPDKUN">
+<meta property="og:description" content="在平面直角坐标系下维护两个操作：  在平面上加入一条线段 给定一个数k，询问与直线x &#x3D; k相交的线段的交点纵坐标最值  李超线段树可以实现以上操作。 理解：李超线段树每个节点存储的是一个区间[l, r]上值最大的线段的编号的懒标记，它不保证存储[l, r]的节点一定在区间上都是最值，但当询问x &#x3D; k时，在所有包含k的区间[l, r]中一定存在最值。 数据定义： 123456">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-01-12T07:23:24.860Z">
+<meta property="article:modified_time" content="2026-01-12T08:20:41.765Z">
+<meta property="article:author" content="spdkun">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="SPDKUN" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/images/03.png" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="  ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>SPDKUN </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Life</a>
+    
+      <a class="main-nav-link" href="/tags/acm/">ACM</a>
+    
+      <a class="main-nav-link" href="/search">Search</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="light-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M438.5-829.913v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-829.913Zm0 747.826v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-82.087ZM877.913-438.5h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537t29.476-12.174h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T877.913-438.5Zm-747.826 0h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T82.087-521.5h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T130.087-438.5Zm660.174-290.87-34.239 32q-12.913 12.674-29.565 12.174-16.653-.5-29.327-13.174-12.674-12.673-12.554-28.826.12-16.152 12.794-28.826l33-35q12.913-12.674 30.454-12.674t30.163 12.847q12.709 12.846 12.328 30.826-.38 17.98-13.054 30.653ZM262.63-203.978l-32 34q-12.913 12.674-30.454 12.674t-30.163-12.847q-12.709-12.846-12.328-30.826.38-17.98 13.054-30.653l33.239-31q12.913-12.674 29.565-12.174 16.653.5 29.327 13.174 12.674 12.673 12.554 28.826-.12 16.152-12.794 28.826Zm466.74 33.239-32-33.239q-12.674-12.913-12.174-29.565.5-16.653 13.174-29.327 12.673-12.674 28.826-13.054 16.152-.38 28.826 12.294l35 33q12.674 12.913 12.674 30.454t-12.847 30.163q-12.846 12.709-30.826 12.328-17.98-.38-30.653-13.054ZM203.978-697.37l-34-33q-12.674-12.913-13.174-29.945-.5-17.033 12.174-29.707t31.326-13.293q18.653-.62 31.326 13.054l32 34.239q11.674 12.913 11.174 29.565-.5 16.653-13.174 29.327-12.673 12.674-28.826 12.554-16.152-.12-28.826-12.794ZM480-240q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm-.247-82q65.703 0 111.475-46.272Q637-414.544 637-480.247t-45.525-111.228Q545.95-637 480.247-637t-111.475 45.525Q323-545.95 323-480.247t45.525 111.975Q414.05-322 479.753-322ZM481-481Z"/></svg></span>
+      <span class="dark-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M480.239-116.413q-152.63 0-258.228-105.478Q116.413-327.37 116.413-480q0-130.935 77.739-227.435t206.304-125.043q43.022-9.631 63.87 10.869t3.478 62.805q-8.891 22.043-14.315 44.463-5.424 22.42-5.424 46.689 0 91.694 64.326 155.879 64.325 64.186 156.218 64.186 24.369 0 46.978-4.946 22.609-4.945 44.413-14.076 42.826-17.369 62.967 1.142 20.142 18.511 10.511 61.054Q807.174-280 712.63-198.206q-94.543 81.793-232.391 81.793Zm0-95q79.783 0 143.337-40.217 63.554-40.218 95.793-108.283-15.608 4.044-31.097 5.326-15.49 1.283-31.859.805-123.706-4.066-210.777-90.539-87.071-86.473-91.614-212.092-.24-16.369.923-31.978 1.164-15.609 5.446-30.978-67.826 32.478-108.282 96.152Q211.652-559.543 211.652-480q0 111.929 78.329 190.258 78.329 78.329 190.258 78.329ZM466.13-465.891Z"/></svg></span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS 订阅">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M198-120q-25.846 0-44.23-18.384-18.384-18.385-18.384-44.23 0-25.846 18.384-44.23 18.384-18.385 44.23-18.385 25.846 0 44.23 18.385 18.384 18.384 18.384 44.23 0 25.845-18.384 44.23Q223.846-120 198-120Zm538.385 0q-18.846 0-32.923-13.769-14.076-13.769-15.922-33.23-8.692-100.616-51.077-188.654-42.385-88.039-109.885-155.539-67.5-67.501-155.539-109.885Q283-663.462 182.385-672.154q-19.461-1.846-33.23-16.23-13.769-14.385-13.769-33.846t14.076-32.922q14.077-13.461 32.923-12.23 120.076 8.692 226.038 58.768 105.961 50.077 185.73 129.846 79.769 79.769 129.846 185.731 50.077 105.961 58.769 226.038 1.231 18.846-12.538 32.922Q756.461-120 736.385-120Zm-252 0q-18.231 0-32.423-13.461t-18.653-33.538Q418.155-264.23 348.886-333.5q-69.27-69.27-166.501-84.423-20.077-4.462-33.538-18.961-13.461-14.5-13.461-33.346 0-19.076 13.884-33.23 13.884-14.153 33.115-10.922 136.769 15.384 234.384 112.999 97.615 97.615 112.999 234.384 3.231 19.23-10.538 33.115Q505.461-120 484.385-120Z"/></svg>
+      </a>
+    
+    <div id="nav-menu-btn" class="nav-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M177.37-252.282q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Zm0-186.218q-17.453 0-29.477-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T177.37-521.5h605.26q17.453 0 29.477 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T782.63-438.5H177.37Zm0-186.217q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Z"/></svg>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/archives">Life</a>
+    
+      <a class="nav-dropdown-link" href="/tags/acm/">ACM</a>
+    
+      <a class="nav-dropdown-link" href="/search">Search</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS 订阅">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+        <image src=/images/02.png></image>
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">SPDKUN </div>
+      <div class="dot"></div>
+      <div class="subtitle">welcom to my blog </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com/SPDKUN" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://twitter.com" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" href="mailto:your-email@example.com" title="邮箱"><i class="fa-solid fa-envelope"></i></a>
+        
+          <a class="link-btn" href="https://SPDKUN.github.io" title="博客"><i class="fa-solid fa-blog"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+  <div class="sticky">
+    
+      
+
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">标签</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/dp/" rel="tag">dp</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%87%A0%E4%BD%95/" rel="tag">几何</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag">图论</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">字符串</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag">数论</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">归档</h3>
+      
+      
+        <a class="archive-link" href="/archives/2026/01 ">
+          一月 2026 
+          <div class="archive-count">37 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2025/12 ">
+          十二月 2025 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2025/11 ">
+          十一月 2025 
+          <div class="archive-count">5 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2025/10 ">
+          十月 2025 
+          <div class="archive-count">24 </div>
+        </a>
+      
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">最新文章</h3>
+      <ul>
+        
+          <a class="recent-link" href="/2026/01/19/%E3%80%90%E6%95%B0%E8%AE%BA%E3%80%91%E6%95%B4%E6%95%B0%E5%88%92%E5%88%86/" title="【数论】整数划分" >
+            <div class="recent-link-text">
+              【数论】整数划分
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2026/01/19/%E3%80%90%E5%9B%BE%E8%AE%BA%E3%80%91%E6%A0%91%E7%9A%84%E9%87%8D%E5%BF%83/" title="【图论】树的重心" >
+            <div class="recent-link-text">
+              【图论】树的重心
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2026/01/19/%E3%80%90%E5%9B%BE%E8%AE%BA%E3%80%91Kosaraju%E7%AE%97%E6%B3%95/" title="【图论】Kosaraju算法" >
+            <div class="recent-link-text">
+              【图论】Kosaraju算法
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2026/01/18/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E3%80%91%E6%92%A4%E9%94%80%E5%B9%B6%E6%9F%A5%E9%9B%86/" title="【数据结构】动态并查集" >
+            <div class="recent-link-text">
+              【数据结构】动态并查集
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2026/01/18/%E3%80%90%E5%9B%BE%E8%AE%BA%E3%80%91%E5%88%86%E5%B1%82bfs/" title="【图论】分层bfs" >
+            <div class="recent-link-text">
+              【图论】分层bfs
+            </div>
+          </a>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+
+<article id="post-【数据结构】李超线段树" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        【数据结构】李超线段树
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2026-01-12T07:23:24.860Z" itemprop="datePublished">2026-01-12</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    未分类 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            3.9k 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <p>在平面直角坐标系下维护两个操作：</p>
+<ul>
+<li>在平面上加入一条线段</li>
+<li>给定一个数k，询问与直线x &#x3D; k相交的线段的交点纵坐标最值</li>
+</ul>
+<p>李超线段树可以实现以上操作。</p>
+<h4 id="理解："><a href="#理解：" class="headerlink" title="理解："></a>理解：</h4><p>李超线段树每个节点存储的是一个区间[l, r]上值最大的线段的编号的懒标记，它不保证存储[l, r]的节点一定在区间上都是最值，但当询问x &#x3D; k时，在所有包含k的区间[l, r]中一定存在最值。</p>
+<p>数据定义：<br> <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">line</span>&#123;</span><br><span class="line">  ll k, b;<span class="comment">//斜率和截距</span></span><br><span class="line">  <span class="function">ll <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="type">const</span> ll x)</span> <span class="type">const</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> k * x + b;<span class="comment">//返回函数值</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;sgt[_size];<span class="comment">//线段树</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> lo[_size], hi[_size];<span class="comment">//记录每个节点的区间范围</span></span><br></pre></td></tr></table></figure><br>构建李超线段树：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">build</span><span class="params">(<span class="type">int</span> i, <span class="type">int</span> l, <span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">  lo[i] = l, hi[i] = r;<span class="comment">//记录该点的区间</span></span><br><span class="line">  sgt[i] = &#123;<span class="number">0</span>, inf&#125;;<span class="comment">//初始化为无效线段</span></span><br><span class="line">  <span class="keyword">if</span> (l == r) <span class="keyword">return</span> ;<span class="comment">//叶子节点，不用继续构建了</span></span><br><span class="line">  <span class="type">int</span> mid = l + (r - l) / <span class="number">2</span>;</span><br><span class="line">  <span class="built_in">build</span>(<span class="number">2</span> * i, l, mid);</span><br><span class="line">  <span class="built_in">build</span>(<span class="number">2</span> * i + <span class="number">1</span>, mid + <span class="number">1</span>, r);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>插入直线：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(<span class="type">int</span> i, line L)</span></span>&#123;</span><br><span class="line">  <span class="type">int</span> l = lo[i], r = hi[i];<span class="comment">//获得区间</span></span><br><span class="line">  <span class="keyword">if</span> (l == r)&#123;<span class="comment">//叶子节点</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">L</span>(l) &lt; sgt[i](l)) sgt[i] = L;<span class="comment">//这里维护的是最小值，所以如果新直线L值更小就更新为L</span></span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="type">int</span> mid = l + (r - l) / <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">if</span> (sgt[i].k &lt; L.k) <span class="built_in">swap</span>(sgt[i], L);<span class="comment">//将当前节点换为斜率大那条直线</span></span><br><span class="line">  <span class="keyword">if</span> (sgt[i](mid) &gt; <span class="built_in">L</span>(mid))&#123;<span class="comment">//如果在中点处已经更大，加上斜率更大，将来一定更大</span></span><br><span class="line">    <span class="built_in">swap</span>(sgt[i], L);<span class="comment">//换回来更优</span></span><br><span class="line">    <span class="built_in">insert</span>(<span class="number">2</span> * i, L);<span class="comment">//交点在左侧，接下来向左子树插入</span></span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="built_in">insert</span>(<span class="number">2</span> * i + <span class="number">1</span>, L);<span class="comment">//交点在右侧，接下来向右子树插入</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码比较抽象，用下图辅助理解：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">    /.sgt</span><br><span class="line">   / .</span><br><span class="line">  /  .</span><br><span class="line">—.———.————————— L</span><br><span class="line">/    |</span><br><span class="line">    mid </span><br><span class="line">sgt[i](mid) &gt; <span class="built_in">L</span>(mid)</span><br><span class="line">明显L更优，换回L</span><br><span class="line">交点在左侧，接下来向左子树插入</span><br><span class="line"></span><br><span class="line">              / sgt</span><br><span class="line">     mid     /</span><br><span class="line">      |     /</span><br><span class="line">——————.————.—— L</span><br><span class="line">      .   /</span><br><span class="line">      .  /</span><br><span class="line">      . /  </span><br><span class="line">sgt[i](mid) &lt;= <span class="built_in">L</span>(mid)</span><br><span class="line">sgt更优，不换</span><br><span class="line">交点在右侧，接下来向右子树插入  </span><br></pre></td></tr></table></figure>
+<p>查询在x处的最小值：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ll <span class="title">query</span><span class="params">(<span class="type">int</span> i, ll x)</span></span>&#123;</span><br><span class="line">  <span class="type">int</span> l = lo[i], r = hi[i];<span class="comment">//区间</span></span><br><span class="line">  <span class="keyword">if</span> (l == r) <span class="keyword">return</span> sgt[i](x);<span class="comment">//叶子节点直接返回</span></span><br><span class="line"></span><br><span class="line">  <span class="type">int</span> mid = l + (r - l) / <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">if</span> (x &lt; mid) <span class="keyword">return</span> <span class="built_in">min</span>(sgt[i](x), <span class="built_in">query</span>(<span class="number">2</span> * i, x));</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">min</span>(sgt[i](x), <span class="built_in">query</span>(<span class="number">2</span> * i + <span class="number">1</span>, x));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Monster-Game-II"><a href="#Monster-Game-II" class="headerlink" title="Monster Game II"></a>Monster Game II</h1><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>You are playing a game that consists of n levels. Each level has a monster. On levels 1,2,…,n-1, you can either kill or escape the monster. However, on level n you must kill the final monster to win the game.<br>Killing a monster takes sf time where s is the monster’s strength and f is your skill factor. After killing a monster, you get a new skill factor  (lower skill factor is better). What is the minimum total time in which you can win the game?  </p>
+<h4 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h4><p>The first input line has two integers n and x: the number of levels and your initial skill factor.<br>The second line has n integers s1,s2,…sn: each monster’s strength.<br>The third line has n integers f1,f2,…,fn: your new skill factor after killing a monster.<br>Constraints<br>1 ≤ n ≤ 2 * 105<br>1 ≤ x ≤ 106<br>1 ≤ si, fi ≤ 106</p>
+<h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><p>Print one integer: the minimum total time to win the game.</p>
+<h4 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h4><p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">5 100</span><br><span class="line">50 20 30 90 30</span><br><span class="line">60 20 20 10 90</span><br></pre></td></tr></table></figure>
+
+<h4 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h4><p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2600</span><br></pre></td></tr></table></figure>
+
+<h4 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h4><p>The best way to play is to kill the second and fifth monster.</p>
+<h4 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h4><p>你要闯过n道关卡，除了最后一关，每关你都可以选择战斗或则跳过。你的的初始能力值为x，每一关怪物的能力值为s_i，打败这个怪物用时为x * s_i，打败后你的能力值更新为 x &#x3D; f_i。问闯完全部关卡的最短用时。</p>
+<h4 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h4><p>用dp，dp_i表示将第i只怪物作为最后一关时的最小用时，有如下转移方程：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt; i; j++)&#123;</span><br><span class="line">​	dp[i] = <span class="built_in">min</span>(dp[i], dp[j] + s[i] * f[j]);</span><br><span class="line">&#125;</span><br><span class="line">k = f[j]</span><br><span class="line">x = s[i]</span><br><span class="line">b = dp[j]</span><br></pre></td></tr></table></figure>
+<p>至此发现是一道斜率优化的问题，斜率优化相关问题可见[[【优化dp】斜率优化dp]]，这里用李超线段树来优化dp。</p>
+<h4 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn = <span class="number">2e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> _size = <span class="number">4e6</span>;</span><br><span class="line"><span class="type">const</span> ll inf = <span class="number">0x3f3f3f3f3f3f3f3f</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">line</span>&#123;</span><br><span class="line">  ll k, b;</span><br><span class="line">  <span class="function">ll <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="type">const</span> ll x)</span> <span class="type">const</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> k * x + b;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;sgt[_size];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, lo[_size], hi[_size];</span><br><span class="line">ll x, s[maxn], f[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">build</span><span class="params">(<span class="type">int</span> i, <span class="type">int</span> l, <span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">  lo[i] = l, hi[i] = r;</span><br><span class="line">  sgt[i] = &#123;<span class="number">0</span>, inf&#125;;</span><br><span class="line">  <span class="keyword">if</span> (l == r) <span class="keyword">return</span> ;</span><br><span class="line">  <span class="type">int</span> mid = l + (r - l) / <span class="number">2</span>;</span><br><span class="line">  <span class="built_in">build</span>(<span class="number">2</span> * i, l, mid);</span><br><span class="line">  <span class="built_in">build</span>(<span class="number">2</span> * i + <span class="number">1</span>, mid + <span class="number">1</span>, r);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(<span class="type">int</span> i, line L)</span></span>&#123;</span><br><span class="line">  <span class="type">int</span> l = lo[i], r = hi[i];</span><br><span class="line">  <span class="keyword">if</span> (l == r)&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">L</span>(l) &lt; sgt[i](l)) sgt[i] = L;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="type">int</span> mid = l + (r - l) / <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">if</span> (sgt[i].k &lt; L.k) <span class="built_in">swap</span>(sgt[i], L);</span><br><span class="line">  <span class="keyword">if</span> (sgt[i](mid) &gt; <span class="built_in">L</span>(mid))&#123;</span><br><span class="line">    <span class="built_in">swap</span>(sgt[i], L);</span><br><span class="line">    <span class="built_in">insert</span>(<span class="number">2</span> * i, L);</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="built_in">insert</span>(<span class="number">2</span> * i + <span class="number">1</span>, L);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">query</span><span class="params">(<span class="type">int</span> i, ll x)</span></span>&#123;</span><br><span class="line">  <span class="type">int</span> l = lo[i], r = hi[i];</span><br><span class="line">  <span class="keyword">if</span> (l == r) <span class="keyword">return</span> sgt[i](x);</span><br><span class="line"></span><br><span class="line">  <span class="type">int</span> mid = l + (r - l) / <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">if</span> (x &lt; mid) <span class="keyword">return</span> <span class="built_in">min</span>(sgt[i](x), <span class="built_in">query</span>(<span class="number">2</span> * i, x));</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">min</span>(sgt[i](x), <span class="built_in">query</span>(<span class="number">2</span> * i + <span class="number">1</span>, x));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">  cin.<span class="built_in">tie</span>(<span class="number">0</span>), cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">  cin &gt;&gt; n &gt;&gt; x;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">    cin &gt;&gt; s[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">    cin &gt;&gt; f[i];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">build</span>(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1e6</span>);<span class="comment">//取值范围为1到s的上限</span></span><br><span class="line">  <span class="built_in">insert</span>(<span class="number">1</span>, &#123;x, <span class="number">0</span>&#125;);<span class="comment">//插入初始线段</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n - <span class="number">1</span>; i++)&#123;</span><br><span class="line">    ll temp = <span class="built_in">query</span>(<span class="number">1</span>, s[i]);<span class="comment">//查询x = s[i]，得到temp为dp[i]</span></span><br><span class="line">    <span class="built_in">insert</span>(<span class="number">1</span>, &#123;f[i], temp&#125;);<span class="comment">//插入y = f[i] * x + temp</span></span><br><span class="line">  &#125;</span><br><span class="line">  cout &lt;&lt; <span class="built_in">query</span>(<span class="number">1</span>, s[n]) &lt;&lt; <span class="string">&quot;\n&quot;</span>;<span class="comment">//打倒最后一关的最小时间</span></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left "
+    
+      href="/2026/01/13/%E3%80%90%E4%BC%98%E5%8C%96dp%E3%80%91%E5%88%86%E6%B2%BB%E4%BC%98%E5%8C%96dp/"
+      title="【优化dp】分治优化dp"
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+      
+        【优化dp】分治优化dp
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2026/01/12/%E3%80%90%E5%9B%BE%E8%AE%BA%E3%80%91%E7%AE%80%E5%8D%95%E5%9B%BE%E6%AC%A7%E6%8B%89%E5%AD%90%E5%9B%BE%E7%9A%84%E4%B8%AA%E6%95%B0/"
+      title="【图论】简单图欧拉子图的个数"
+     >
+
+    <p class="title-text">
+      
+        【图论】简单图欧拉子图的个数
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2026 SPDKUN<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>
